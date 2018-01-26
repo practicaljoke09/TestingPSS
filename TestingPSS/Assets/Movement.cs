@@ -25,34 +25,17 @@ public class Movement : MonoBehaviour {
         horizontalAxis = Input.GetAxis("Horizontal" + player);
         verticalAxis = Input.GetAxis("Vertical" + player);
         CharacterMovement();
-
-
 	}
 
     public void CharacterMovement()
     {
-        if (horizontalAxis != 0)
-        {
-            if(horizontalAxis > 0)
-            {
-                movementDirection = Vector3.right;
-
-                transform.position += Vector3.right * moveSpeed;
-
-                transform.rotation = Quaternion.LookRotation(Vector3.right);
-            }
-
-            if (horizontalAxis < 0)
-            {
-                movementDirection = Vector3.left;
-
-                transform.position += Vector3.left * moveSpeed;
-
-                transform.rotation = Quaternion.LookRotation(Vector3.left);
-            }
-
-
-        }
+        movementDirection = new Vector3 (horizontalAxis, 0.0f, verticalAxis);
+        transform.position += movementDirection * moveSpeed;
+        Quaternion.LookRotation(movementDirection);
     }
 }
+
+
+
+
 
